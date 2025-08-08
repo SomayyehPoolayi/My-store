@@ -1,1 +1,2 @@
-# My-store
+# My-store:
+HTML - Tailwind Css - React - TypeScript
