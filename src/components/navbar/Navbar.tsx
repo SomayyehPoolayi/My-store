@@ -6,7 +6,6 @@ function Navbar() {
     <div className="h-14 border-b shadow flex items-center">
       <Container>
         <div className="flex justify-between flex-row-reverse ">
-         
           <ul className="flex">
             <li className="ml-4 mr-10">
               <Link to="/store">فروشگاه</Link>
@@ -17,7 +16,9 @@ function Navbar() {
           </ul>
 
           <div>
-            <button className="ml-10">سبد خرید</button>
+            <Link to="/cart">
+              <button>سبد خرید</button>
+            </Link>
           </div>
         </div>
       </Container>

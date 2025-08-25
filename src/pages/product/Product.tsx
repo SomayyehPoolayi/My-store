@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "../../components/container/Container";
+import Button from "../../components/button/Button";
 
 function Product() {
   return (
@@ -17,9 +18,7 @@ function Product() {
           <div className="col-span-2 p-4 bg-sky-200">
             <img src="" alt="" className="rounded" />
 
-            <div>
-              <button>add to cart</button>
-            </div>
+            <Button className="mt-2 w-full !py-3" variant="primary">add to car</Button>
           </div>
         </div>
       </Container>
