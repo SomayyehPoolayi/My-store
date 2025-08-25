@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "a title",
+      "price": 100,
+      "description": "kuhfkjfh",
+      "category": "dress",
+      "image": "",
+      "rating": {
+        "rate": 2,
+        "count": 400
+      }
+    }
+  ]
+}
