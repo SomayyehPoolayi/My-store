@@ -2,11 +2,35 @@
   "products": [
     {
       "id": "1",
-      "title": "a title",
-      "price": 100,
-      "description": "kuhfkjfh",
+      "title": "title 1",
+      "price": 200,
+      "description": "description 1",
       "category": "dress",
-      "image": "",
+      "image": "../src/assets/pics/dress1.jpg",
+      "rating": {
+        "rate": 2,
+        "count": 400
+      }
+    },
+    {
+      "id": "2",
+      "title": "title 2",
+      "price": 300,
+      "description": "description 2",
+      "category": "shoes",
+      "image": "../src/assets/pics/shoes1.jpg",
+      "rating": {
+        "rate": 2,
+        "count": 400
+      }
+    },
+    {
+      "id": "3",
+      "title": "title 3",
+      "price": 100,
+      "description": "description 3",
+      "category": "makeup",
+      "image": "../src/assets/pics/lip1.jpg",
       "rating": {
         "rate": 2,
         "count": 400
