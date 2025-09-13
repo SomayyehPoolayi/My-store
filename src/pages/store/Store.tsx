@@ -3,10 +3,10 @@ import Container from "../../components/container/Container";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getProducts } from "../../services/api";
-import type { Products } from "../../types/servers";
+import type { IProduct } from "../../types/servers";
 
 function Store() {
-  const [products, setProducts] = useState<Products[]>([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
     getProducts().then((result) => {
@@ -21,7 +21,7 @@ function Store() {
       <Container>
         <div className="grid grid-cols-4 gap-4 mt-4">
           {products.map((item) => (
-            <Link to={`/product/${item.id}`}>
+            <Link key={item.id} to={`/product/${item.id}`}>
               <ProductItem {...item}/>
             </Link>
           ))}

@@ -35,6 +35,18 @@
         "rate": 2,
         "count": 400
       }
+    },
+    {
+      "id": "4",
+      "title": "title 4",
+      "price": 500,
+      "description": "description 4",
+      "category": "bag",
+      "image": "../src/assets/pics/bag1.jpg",
+      "rating": {
+        "rate": 2,
+        "count": 400
+      }
     }
   ]
 }
