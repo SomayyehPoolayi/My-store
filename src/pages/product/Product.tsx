@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "../../components/container/Container";
 import Button from "../../components/button/Button";
 import { useParams } from "react-router-dom";
@@ -9,9 +9,9 @@ import { useShoppingCartContext } from "../../context/ShoppingCartContext";
 function Product() {
   const params = useParams<{ id: string }>();
 
- const [productData, setProductData] = useState<IProduct>();
+  const [productData, setProductData] = useState<IProduct>();
 
- const {handleIncreaseProductQty}=useShoppingCartContext();
+  const {  handleDecreaseProductQty, handleIncreaseProductQty } = useShoppingCartContext();
 
   useEffect(() => {
     getProduct(params.id as string).then((data) => {
@@ -34,8 +34,24 @@ function Product() {
           <div className="col-span-2 p-4 bg-sky-200">
             <img src={productData?.image} alt="" className="rounded" />
 
-            <Button  onClick={()=>handleIncreaseProductQty(parseInt(params.id as string))} className="mt-2 w-full !py-3" variant="primary">
+            <Button
+              onClick={() =>
+                handleIncreaseProductQty(parseInt(params.id as string))
+              }
+              className="mt-2 w-full !py-3"
+              variant="primary"
+            >
               add to car
+            </Button>
+
+            <Button
+              onClick={() =>
+                handleDecreaseProductQty(parseInt(params.id as string))
+              }
+              className="mt-2 w-full !py-3"
+              variant="primary"
+            >
+            -
             </Button>
           </div>
         </div>
