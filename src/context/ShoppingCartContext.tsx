@@ -17,6 +17,7 @@ interface ShoppingCartContext {
   handleDecreaseProductQty: (id: number) => void;
   getProductQty: (id: number) => number;
   handleRemoveProduct:(id: number)=>void;
+  cartQty:number;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -74,6 +75,9 @@ export function ShoppingCartProvider({ children }: ShoppingCartProvider) {
     );
   };
 
+const cartQty=cartItems.reduce( (totalQty,item)=>totalQty+item.qty , 0)
+
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -81,7 +85,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProvider) {
         handleIncreaseProductQty,
         handleDecreaseProductQty,
         getProductQty,
-         handleRemoveProduct
+         handleRemoveProduct,
+         cartQty
       }}
     >
       {children}
