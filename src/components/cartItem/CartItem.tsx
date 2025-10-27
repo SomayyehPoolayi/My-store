@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Button from "../button/Button";
 import { getProduct } from "../../services/api";
-import type { IProduct } from "../../types/servers";
-import Product from "../../pages/product/Product";
+// import type { IProduct } from "../../types/servers";
+// import Product from "../../pages/product/Product";
 import { useShoppingCartContext } from "../../context/ShoppingCartContext";
 import { Link } from "react-router-dom";
 
