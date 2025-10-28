@@ -5,6 +5,7 @@ import { getProduct } from "../../services/api";
 // import Product from "../../pages/product/Product";
 import { useShoppingCartContext } from "../../context/ShoppingCartContext";
 import { Link } from "react-router-dom";
+import type { IProduct } from "../../types/servers";
 
 interface ICartItem {
   id: number;
@@ -12,7 +13,7 @@ interface ICartItem {
 }
 
 function CartItem({ id, qty }: ICartItem) {
-  const [product, setProduct] = useState<IProductt>();
+  const [product, setProduct] = useState<IProduct>();
 
   const {
     handleIncreaseProductQty,
