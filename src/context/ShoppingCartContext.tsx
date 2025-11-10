@@ -24,7 +24,7 @@ interface ShoppingCartContext {
   isLogin: boolean;
   handleSetLogin: (username:string,password:string) => void;
   handleSetLogout: () => void;
-  data: string;
+  // data: string;
 
 }
 
