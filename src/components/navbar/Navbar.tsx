@@ -3,7 +3,7 @@ import Container from "../container/Container";
 import { useShoppingCartContext } from "../../context/ShoppingCartContext";
 
 function Navbar() {
-  const { cartQty } = useShoppingCartContext();
+  const { cartQty, handleSetLogout } = useShoppingCartContext();
 
   return (
     <div className="h-14 border-b shadow flex items-center">
@@ -19,10 +19,14 @@ function Navbar() {
           </ul>
 
           <div>
+            
+            <button onClick={handleSetLogout}>logout</button>
+
             <Link to="/cart" className="relative">
               <button>
                 {" "}
-                <svg className="w-7 h-7 "
+                <svg
+                  className="w-7 h-7 "
                   xmlns="http://www.w3.org/2000/svg"
                   version="1.1"
                   width="256"
@@ -55,6 +59,7 @@ function Navbar() {
                   </g>
                 </svg>
               </button>
+
               <span className="absolute w-6 h-6 bg-blue-500 flex justify-center items-center rounded-full text-white top-0 -right-6">
                 {cartQty !== 0 ? cartQty : ""}
               </span>

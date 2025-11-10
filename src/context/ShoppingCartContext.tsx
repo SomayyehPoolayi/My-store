@@ -1,7 +1,9 @@
 /* eslint-disable prefer-const */
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { login } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 interface ShoppingCartProvider {
   children: React.ReactNode;
@@ -17,8 +19,13 @@ interface ShoppingCartContext {
   handleIncreaseProductQty: (id: number) => void;
   handleDecreaseProductQty: (id: number) => void;
   getProductQty: (id: number) => number;
-  handleRemoveProduct:(id: number)=>void;
-  cartQty:number;
+  handleRemoveProduct: (id: number) => void;
+  cartQty: number;
+  isLogin: boolean;
+  handleSetLogin: (username:string,password:string) => void;
+  handleSetLogout: () => void;
+  data: string;
+
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -29,9 +36,10 @@ export const useShoppingCartContext = () => {
 };
 
 export function ShoppingCartProvider({ children }: ShoppingCartProvider) {
-  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("cartItems",[]);
-
-  
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+    "cartItems",
+    []
+  );
 
   const handleIncreaseProductQty = (id: number) => {
     setCartItems((currentItems) => {
@@ -78,8 +86,35 @@ export function ShoppingCartProvider({ children }: ShoppingCartProvider) {
     );
   };
 
-const cartQty=cartItems.reduce( (totalQty,item)=>totalQty+item.qty , 0)
+  const cartQty = cartItems.reduce((totalQty, item) => totalQty + item.qty, 0);
 
+  const [isLogin, setIsLogin] = useState(false);
+
+  const navigate = useNavigate()
+
+  const handleSetLogin = (username:string,password:string) => {
+    login(username,password).finally(() => {
+      let token =
+        "N2IxYjUzMzQtMDkwYi00ODE0LWIzZWQtOWI4YWRkMDlkOGI4OjY0YWNmYTc4LWJmMzEtNDQ1Zi04NDI3LTgzOGJiYjEyMWRkMg";
+      //  let token=data.token;
+      localStorage.setItem("token", token);
+      setIsLogin(true);
+      navigate("/")
+    });
+  };
+
+  const handleSetLogout = () => {
+    setIsLogin(false);
+    navigate("/login");
+    localStorage.removeItem("token")
+  };
+
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (token) {
+      setIsLogin(true);
+    }
+  }, []);
 
   return (
     <ShoppingCartContext.Provider
@@ -88,8 +123,11 @@ const cartQty=cartItems.reduce( (totalQty,item)=>totalQty+item.qty , 0)
         handleIncreaseProductQty,
         handleDecreaseProductQty,
         getProductQty,
-         handleRemoveProduct,
-         cartQty
+        handleRemoveProduct,
+        cartQty,
+        isLogin,
+        handleSetLogin,
+        handleSetLogout,
       }}
     >
       {children}
